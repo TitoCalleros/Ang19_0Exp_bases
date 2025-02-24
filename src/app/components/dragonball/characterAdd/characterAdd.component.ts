@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, output, signal } from '@angular/core';
 
 import { Character } from '../../../interfaces/character.interface';
 
@@ -8,6 +8,8 @@ import { Character } from '../../../interfaces/character.interface';
   templateUrl: './characterAdd.component.html',
 })
 export class CharacterAddComponent {
+  newCharacter = output<Character>();
+
   name = signal('');
   power = signal(0);
 
@@ -16,21 +18,13 @@ export class CharacterAddComponent {
       console.log('Valores inválidos');
       return;
     }
-    const newCharacter: Character = {
-      id: 10000,
+    const myNewCharacter: Character = {
+      id: Math.floor(Math.random() * 1000),
       name: this.name(),
       power: this.power()
     };
 
-    console.log(`${ this.name() } - ${ this.power() }`);
-
-    // Forma no recomendada.
-    // this.characters().push(newCharacter);
-
-    // Forma recomendada
-    // this.characters.update( (list) => [...list, newCharacter])
-
-    console.log({newCharacter})
+    this.newCharacter.emit(myNewCharacter);
 
     this.resetFields();
   }
