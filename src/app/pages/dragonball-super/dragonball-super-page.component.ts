@@ -24,6 +24,10 @@ export class DragonballSuperPageComponent {
     }
   } );
 
+  addCharacter(newCharacter: Character): void {
+    this.characters.update( (list) => [...list, newCharacter]);
+  }
+
 
 
 }
