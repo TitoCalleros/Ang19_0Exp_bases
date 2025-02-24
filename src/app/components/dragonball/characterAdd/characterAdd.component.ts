@@ -17,7 +17,7 @@ export class CharacterAddComponent {
       return;
     }
     const newCharacter: Character = {
-      id: 0,
+      id: 10000,
       name: this.name(),
       power: this.power()
     };
